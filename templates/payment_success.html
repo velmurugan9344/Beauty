@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Payment success - Beauty{% endblock %}
+
+{% block content %}
+<style>
+    .payment-container {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        max-width: 500px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9f9;
+    }
+    .payment-container h3 {
+        color: green;
+    }
+    .payment-details {
+        text-align: left;
+        margin-top: 20px;
+    }
+    .payment-details p {
+        font-size: 18px;
+        margin: 5px 0;
+    }
+</style>
+<div class="payment-container">
+    <h3>🎉 Payment Successful! 🎉</h3><br>
+    <p>Thank you for your purchase, <strong>{{ payment_data.user }}</strong>!</p>
+
+    <div class="payment-details">
+        <p><strong>Amount Paid:</strong> ₹{{ payment_data.amount }}</p>
+        <p><strong>Plan:</strong> {{ payment_data.plan }}</p>
+        <p><strong>Email:</strong> {{ payment_data.email }}</p>
+        <p><strong>Order ID:</strong> {{ payment_data.order_id }}</p>
+        <p><strong>Payment ID:</strong> {{ payment_data.payment_id }}</p>
+    </div>
+    <br>
+    <p><b>Your order has been successfully placed. Check your email for confirmation.</b></p>
+    <hr>
+    <a href="{% url 'home' %}" class="btn btn-info text-center" style="border-radius:5px;">Go to Homepage</a>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,364 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>{%block title %}SPA Center - Beauty & Spa{% endblock %}</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="{% static 'img/favicon.ico" rel="icon' %}">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css' %}" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Moment.js (required for datetimepicker) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+    <!-- Bootstrap Datetimepicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />
+
+</head>
+
+<body>
+    <!-- Navbar Start -->
+    <div class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
+            <!-- Website Title -->
+            <a href="{% url 'home' %}" class="navbar-brand ml-lg-3">
+                <h1 class="m-0 text-primary"><span class="text-dark">SK</span> Beautify</h1>
+            </a>
+
+            <!-- Navbar Toggle for Mobile -->
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse px-lg-3" id="navbarCollapse">
+                <!-- Centered Navigation Links -->
+                <div class="navbar-nav mx-auto py-0">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
+                        <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
+                        <a href="{% url 'service' %}" class="nav-item nav-link">Services</a>
+                        <a href="{% url 'price' %}" class="nav-item nav-link">Pricing</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu rounded-0 m-0">
+                                <a href="{% url 'appointment' %}" class="dropdown-item">Appointment</a>
+                                <a href="{% url 'opening' %}" class="dropdown-item">Open Hours</a>
+                                <a href="{% url 'team' %}" class="dropdown-item">Our Team</a>
+                                <a href="{% url 'testimonial' %}" class="dropdown-item">Testimonial</a>
+                            </div>
+                        </div>
+                        <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
+                    {% endif %}
+                </div>
+
+                <!-- Buttons on the Right -->
+                <div class="d-flex ms-auto">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+                    {% else %}
+                        <a href="{% url 'register' %}" class="btn btn-primary mx-2">Register</a>
+                        <a href="{% url 'login' %}" class="btn btn-success mx-2">Login</a>                    
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+
+    <!--Main content-->
+     
+    {% block content %}
+    {% endblock %}
+    
+
+    <!-- Footer Start -->
+        {% if user.is_authenticated %}
+        <!-- Full Footer -->
+        <div class="footer container-fluid position-relative bg-dark py-5" style="margin-top: 90px;">
+            <div class="container pt-5">
+                <div class="row">
+                    <div class="col-lg-6 pr-lg-5 mb-5">
+                        <a href="{% url 'home' %}" class="navbar-brand">
+                            <h1 class="mb-3 text-white"><span class="text-primary">SK</span> Beautify</h1>
+                        </a>
+                        <p>At SK Beautify, we believe in enhancing your natural beauty with our premium spa and skincare treatments. From rejuvenating facials to relaxing massages, our expert therapists ensure a luxurious and soothing experience tailored just for you.</p>
+                        <p><i class="fa fa-map-marker-alt mr-2"></i>123 Street, New York, USA</p>
+                        <p><i class="fa fa-phone-alt mr-2"></i>+012 345 67890</p>
+                        <p><i class="fa fa-envelope mr-2"></i>info@example.com</p>
+                        <div class="d-flex justify-content-start mt-4">
+                            <a class="btn btn-lg btn-primary btn-lg-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-lg btn-primary btn-lg-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-lg btn-primary btn-lg-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-lg btn-primary btn-lg-square" href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 pl-lg-5">
+                        <div class="row">
+                            <div class="col-sm-6 mb-5">
+                                <h5 class="text-white text-uppercase mb-4">Quick Links</h5>
+                                <div class="d-flex flex-column justify-content-start">
+                                    <a class="text-white-50 mb-2" href="{% url 'home' %}"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                                    <a class="text-white-50 mb-2" href="{% url 'about' %}"><i class="fa fa-angle-right mr-2"></i>About Us</a>
+                                    <a class="text-white-50 mb-2" href="{% url 'service' %}"><i class="fa fa-angle-right mr-2"></i>Our Services</a>
+                                    <a class="text-white-50 mb-2" href="{% url 'price' %}"><i class="fa fa-angle-right mr-2"></i>Pricing Plan</a>
+                                    <a class="text-white-50" href="{% url 'contact' %}"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-5">
+                                <h5 class="text-white text-uppercase mb-4">Our Services</h5>
+                                <div class="d-flex flex-column justify-content-start">
+                                    <a class="text-white-50 mb-2" href="{% url 'home' %}#our-services"><i class="fa fa-angle-right mr-2"></i>Body Massage</a>
+                                    <a class="text-white-50 mb-2" href="{% url 'home' %}#our-services"><i class="fa fa-angle-right mr-2"></i>Stone Therapy</a>
+                                    <a class="text-white-50 mb-2" href="{% url 'home' %}#our-services"><i class="fa fa-angle-right mr-2"></i>Facial Therapy</a>
+                                    <a class="text-white-50 mb-2" href="{% url 'home' %}#our-services"><i class="fa fa-angle-right mr-2"></i>Skin Care</a>
+                                    <a class="text-white-50" href="{% url 'home' %}#our-services"><i class="fa fa-angle-right mr-2"></i>Nail Care</a>
+                                    <a class="text-white-50" href="{% url 'home' %}#our-services"><i class="fa fa-angle-right mr-2"></i>Face Masking</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 mb-5">
+                                <h5 class="text-white text-uppercase mb-4">Newsletter</h5>
+                                <div class="w-100">
+                                    <form id="subscribeForm">
+                                        <div class="input-group">
+                                            <input type="email" id="email" name="email" class="form-control border-light" style="padding: 30px;" placeholder="Your Email Address" required>
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-primary px-4">Sign Up</button>
+                                            </div>
+                                        </div>
+                                        <p id="subscriptionMessage" style="color: white; margin-top: 10px;"></p> <!-- Message will appear here -->
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <!-- Common Footer (Always Visible) -->
+        <div class="container-fluid bg-dark text-light border-top py-4" style="border-color: rgba(256, 256, 256, .15) !important;"> 
+            <div class="container">
+                <div class="row">
+                    <!-- Left Side - Your Site Name -->
+                    <div class="col-md-4 text-center text-md-left mb-3 mb-md-0">
+                        <p class="m-0 text-white">&copy; <a href="#">Your Site Name</a>. All Rights Reserved.</p>
+                    </div>
+        
+                    <!-- Center - Privacy Policy & Terms -->
+                    <div class="col-md-4 text-center">
+                        <a href="{% url 'privacy' %}" class="text-white mx-2">Privacy Policy</a> | 
+                        <a href="{% url 'terms' %}" class="text-white mx-2">Terms & Conditions</a>
+                    </div>
+        
+                    <!-- Right Side - Designed By -->
+                    <div class="col-md-4 text-center text-md-right">
+                        <p class="m-0 text-white">Designed by <a href="#">HTML Codex</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'lib/tempusdominus/js/moment.min.js' %}"></script>
+    <script src="{% static 'lib/tempusdominus/js/moment-timezone.min.js' %}"></script>
+    <script src="{% static 'lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="{% static 'mail/jqBootstrapValidation.min.js' %}"></script>
+    <script src="{% static 'mail/contact.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <script>
+        $(function () {
+            $('#date').datetimepicker({
+                format: 'YYYY-MM-DD',
+                ignoreReadonly: true, // Prevents double picker issue
+            });
+            $('#time').datetimepicker({
+                format: 'HH:mm',
+                ignoreReadonly: true,
+            });
+        });
+    </script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Check if the URL has a hash (e.g., #appointment-section)
+            if (window.location.hash) {
+                const targetElement = document.querySelector(window.location.hash);
+                if (targetElement) {
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 50, // Adjust for fixed headers if needed
+                            behavior: "smooth"
+                        });
+                    }, 500); // Delay to allow page rendering
+                }
+            }
+        
+            // Add smooth scrolling for buttons on the same page
+            document.querySelectorAll('.scroll-btn').forEach(button => {
+                button.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute("data-target");
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 50,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+        });                
+    </script> 
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".razorpay-btn").forEach(button => {
+                button.addEventListener("click", function () {
+                    let plan = this.getAttribute("data-plan");
+                    let amount = parseFloat(this.getAttribute("data-amount")) * 100; // Convert ₹ to paise
+        
+                    fetch("/create-order/", {
+                        method: "POST",
+                        headers: {
+                            "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value,
+                            "Content-Type": "application/x-www-form-urlencoded"
+                        },
+                        body: new URLSearchParams({ plan: plan, amount: amount / 100 })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            alert("Error: " + data.error);
+                            return;
+                        }
+        
+                        let options = {
+                            "key": "rzp_test_E1sTO73BJDGQZ8",
+                            "amount": data.amount,
+                            "currency": "INR",
+                            "name": "SK Beautify",
+                            "description": plan,
+                            "order_id": data.order_id,
+                            "handler": function (response) {
+                                fetch("/payment-success/", {
+                                    method: "POST",
+                                    headers: {
+                                        "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value,
+                                        "Content-Type": "application/x-www-form-urlencoded"
+                                    },
+                                    body: new URLSearchParams({
+                                        razorpay_order_id: response.razorpay_order_id,
+                                        razorpay_payment_id: response.razorpay_payment_id,
+                                        razorpay_signature: response.razorpay_signature
+                                    })
+                                })
+                                .then(res => res.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        window.location.href = "/payment-success/"; // ✅ Redirect after success
+                                    } else {
+                                        alert("Payment verification failed: " + data.error);
+                                    }
+                                })
+                                .catch(error => {
+                                    alert("Error sending payment details. Check console.");
+                                    console.error(error);
+                                });
+                            }
+                        };
+        
+                        let rzp = new Razorpay(options);
+                        rzp.open();
+                    })
+                    .catch(error => {
+                        alert("Something went wrong. Check console.");
+                        console.error(error);
+                    });
+                });
+            });
+        });    
+   </script>
+   <script>
+    document.getElementById("subscribeForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        let email = document.getElementById("email").value;
+        let messageElement = document.getElementById("subscriptionMessage");
+
+        fetch("{% url 'subscribe' %}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": "{{ csrf_token }}"
+            },
+            body: JSON.stringify({ "email": email })
+        })
+        .then(response => response.json())
+        .then(data => {
+            messageElement.innerText = data.message; // Show message below input box
+            if (data.status === "success") {
+                messageElement.style.color = "green"; // Green for success
+                document.getElementById("email").value = ""; // Clear input on success
+            } else {
+                messageElement.style.color = "red"; // Red for errors
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    });
+   </script>
+   
+   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        if (window.location.hash) {
+            let target = document.querySelector(window.location.hash);
+            if (target) {
+                setTimeout(() => {
+                    target.scrollIntoView({ behavior: "smooth" });
+                }, 500); // Wait to ensure page loads first
+            }
+        }
+    });
+    </script>    
+  
+</body>
+
+</html>

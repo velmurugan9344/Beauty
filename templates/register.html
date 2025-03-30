@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Register- Beauty{% endblock %}
+
+{% block content %}
+<div class="auth-background">
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg p-4">
+                <div class="card-body">
+                    <h3 class="text-center text-primary mb-4">Register</h3>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">{{ field.label }}</label>
+                                {{ field }}
+                                {% if field.errors %}
+                                    <div class="text-danger small">
+                                        {{ field.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-info w-100">Register</button>
+                    </form>
+                    <p class="text-center mt-3">
+                        Already have an account? <a href="{% url 'login' %}" class="text-decoration-none">Login here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Ensure all input fields have equal width */
+    input {
+        width: 100% !important;  /* Force all input fields to take full width */
+    }
+    .form-control {
+        height: 45px; /* Make input fields consistent in height */
+    }
+    .auth-background {
+        background: url("/static/img/auth_background.jpg") no-repeat center center fixed;
+        background-size: cover;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+</style>
+
+{% endblock %}
